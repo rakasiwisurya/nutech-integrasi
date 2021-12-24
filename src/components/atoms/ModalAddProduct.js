@@ -4,7 +4,7 @@ import { NotificationManager } from "react-notifications";
 import { API } from "../../config/api";
 import LoadingWhite from "../../assets/images/loading-white.svg";
 
-export default function ModalAddProduct({ show, handleClose }) {
+export default function ModalAddProduct({ show, handleClose, getAllProduct }) {
   const [isLoading, setIsLoading] = useState(false);
   const [preview, setPreview] = useState(null);
   const [product, setProduct] = useState({
@@ -57,8 +57,10 @@ export default function ModalAddProduct({ show, handleClose }) {
           response.data.status
         );
 
+        getAllProduct();
         handleClose();
         setIsLoading(false);
+        setPreview(null);
         setProduct({
           name: "",
           buy_price: "",

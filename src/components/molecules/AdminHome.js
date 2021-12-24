@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Col, Container, Image, Row, Table } from "react-bootstrap";
+import { NotificationManager } from "react-notifications";
 import { API } from "../../config/api";
 import ModalAddProduct from "../atoms/ModalAddProduct";
 
@@ -24,9 +25,17 @@ export default function AdminHome() {
     });
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
     try {
-      console.log("Delete");
+      const response = await API.delete(`/products/${id}`);
+      if (response.status === 200) {
+        NotificationManager.success(
+          response.data.message,
+          response.data.status
+        );
+
+        getAllProduct();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -104,7 +113,7 @@ export default function AdminHome() {
                         <Button
                           variant="danger"
                           className="btn-action"
-                          onClick={handleDelete}
+                          onClick={() => handleDelete(item.id)}
                         >
                           Delete
                         </Button>
@@ -118,7 +127,11 @@ export default function AdminHome() {
         </Container>
       </main>
 
-      <ModalAddProduct show={isShow.add} handleClose={handleClose} />
+      <ModalAddProduct
+        show={isShow.add}
+        handleClose={handleClose}
+        getAllProduct={getAllProduct}
+      />
     </div>
   );
 }

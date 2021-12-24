@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { Button, Card, FloatingLabel, Form, Image } from "react-bootstrap";
 import { NotificationManager } from "react-notifications";
 import { API } from "../config/api";
@@ -8,6 +8,7 @@ import Header from "../components/molecules/Header";
 
 export default function EdiProduct() {
   const { id } = useParams();
+  const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState({
@@ -100,6 +101,7 @@ export default function EdiProduct() {
 
         setIsLoading(false);
         getProduct();
+        history.push("/");
       }
     } catch (error) {
       console.log(error);
