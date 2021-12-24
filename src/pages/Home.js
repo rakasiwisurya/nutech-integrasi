@@ -1,7 +1,12 @@
+import { Container } from "react-bootstrap";
+import Header from "../components/molecules/Header";
+
 export default function Home() {
   return (
     <div className="home">
-      <div className="container">This is Home</div>
+      <Header />
+
+      <Container></Container>
     </div>
   );
 }

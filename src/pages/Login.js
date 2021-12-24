@@ -64,9 +64,15 @@ export default function Login() {
     <div className="login">
       <Card style={{ width: "18rem" }} className="shadow">
         <Card.Body>
-          <Card.Title className="mb-4 fs-4 text-center">Login</Card.Title>
+          <Card.Title className="mb-4 fs-4 text-center text-indigo">
+            Login
+          </Card.Title>
           <Form onSubmit={handleLogin}>
-            <FloatingLabel className="mb-3" controlId="email" label="Email">
+            <FloatingLabel
+              className="mb-3 text-indigo"
+              controlId="email"
+              label="Email"
+            >
               <Form.Control
                 type="email"
                 placeholder="Email"
@@ -75,7 +81,7 @@ export default function Login() {
               />
             </FloatingLabel>
             <FloatingLabel
-              className="mb-4"
+              className="mb-4 text-indigo"
               controlId="password"
               label="Password"
             >
