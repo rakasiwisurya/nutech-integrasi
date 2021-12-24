@@ -78,6 +78,19 @@ main {
   cursor: pointer;
 }
 
+.table-box {
+  min-height: 460px;
+}
+
+.pagination {
+  .page-link {
+    &.active {
+      background-color: $primary;
+      color: $white;
+    }
+  }
+}
+
 .login {
   width: 100%;
   height: 100vh;
