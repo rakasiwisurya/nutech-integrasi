@@ -200,7 +200,7 @@ export default function EdiProduct() {
                   <Button
                     variant="primary"
                     type="submit"
-                    className="btn-action me-2"
+                    className="w-100"
                     disabled
                   >
                     <Image src={LoadingWhite} alt={LoadingWhite} height={20} />
