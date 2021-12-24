@@ -139,7 +139,7 @@ export default function ModalAddProduct({ show, handleClose }) {
             </FloatingLabel>
 
             <Form.Group controlId="image" className="mb-3 text-indigo">
-              <Form.Control type="file" onChange={handleChange} />
+              <Form.Control type="file" onChange={handleChange} required />
             </Form.Group>
 
             {preview && (
@@ -153,10 +153,18 @@ export default function ModalAddProduct({ show, handleClose }) {
             )}
 
             <div className="mb-2 d-flex justify-content-end">
-              <Button variant="primary" type="submit" className="px-4 me-2">
+              <Button
+                variant="primary"
+                type="submit"
+                className="btn-action me-2"
+              >
                 Add
               </Button>
-              <Button variant="secondary" onClick={handleClose}>
+              <Button
+                variant="secondary"
+                onClick={handleClose}
+                className="btn-action"
+              >
                 Cancel
               </Button>
             </div>
