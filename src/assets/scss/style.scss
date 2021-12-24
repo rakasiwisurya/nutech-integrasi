@@ -65,9 +65,17 @@ main {
   color: $indigo;
 }
 
+.bg-indigo {
+  background-color: $indigo;
+}
+
 .btn-indigo {
   background-color: $indigo;
   color: $white;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .login {

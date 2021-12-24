@@ -19,7 +19,7 @@ export default function Header() {
       <Navbar bg="transparent" variant="primary" fixed="top" className="shadow">
         <Container>
           <Navbar.Brand
-            className="text-indigo fw-bold"
+            className="text-indigo fw-bold cursor-pointer"
             onClick={() => {
               history.push("/");
             }}
