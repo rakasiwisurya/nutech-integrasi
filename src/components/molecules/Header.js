@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <header className="header">
-      <Navbar bg="transparent" variant="primary" fixed="top" className="shadow">
+      <Navbar bg="light" variant="primary" fixed="top" className="shadow">
         <Container>
           <Navbar.Brand
             className="text-indigo fw-bold cursor-pointer"

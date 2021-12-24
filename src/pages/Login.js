@@ -1,15 +1,18 @@
 import { useContext, useState } from "react";
 import { useHistory } from "react-router";
-import { Form, FloatingLabel, Button, Card } from "react-bootstrap";
+import { Form, FloatingLabel, Button, Card, Image } from "react-bootstrap";
 import { NotificationManager } from "react-notifications";
 
 import { AuthContext } from "../contexts/AuthContext";
 import { API, setAuthToken } from "../config/api";
 
-export default function Login() {
-  const { dispatch } = useContext(AuthContext);
-  const history = useHistory();
+import LoadingWhite from "../assets/images/loading-white.svg";
 
+export default function Login() {
+  const history = useHistory();
+  const { dispatch } = useContext(AuthContext);
+
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -24,6 +27,7 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const config = {
@@ -47,16 +51,18 @@ export default function Login() {
           response.data.message,
           response.data.status
         );
+        setIsLoading(false);
         history.push("/");
       }
     } catch (error) {
       console.log(error);
       if (error?.response.data?.message) {
-        return NotificationManager.error(
+        NotificationManager.error(
           error.response.data.message,
           error.response.data.status
         );
       }
+      setIsLoading(false);
     }
   };
 
@@ -64,12 +70,12 @@ export default function Login() {
     <div className="login">
       <Card style={{ width: "18rem" }} className="shadow">
         <Card.Body>
-          <Card.Title className="mb-4 fs-4 text-center text-indigo">
+          <Card.Title className="mb-4 fs-4 fw-bold text-center text-primary">
             Login
           </Card.Title>
           <Form onSubmit={handleLogin}>
             <FloatingLabel
-              className="mb-3 text-indigo"
+              className="mb-3 text-primary"
               controlId="email"
               label="Email"
             >
@@ -81,7 +87,7 @@ export default function Login() {
               />
             </FloatingLabel>
             <FloatingLabel
-              className="mb-4 text-indigo"
+              className="mb-4 text-primary"
               controlId="password"
               label="Password"
             >
@@ -92,9 +98,21 @@ export default function Login() {
                 value={form.password}
               />
             </FloatingLabel>
-            <Button variant="primary" type="submit" className="w-100 mb-2">
-              Sign In
-            </Button>
+
+            {isLoading ? (
+              <Button
+                variant="primary"
+                type="submit"
+                className="w-100 mb-2"
+                disabled
+              >
+                <Image src={LoadingWhite} alt={LoadingWhite} height={20} />
+              </Button>
+            ) : (
+              <Button variant="primary" type="submit" className="w-100 mb-2">
+                Sign In
+              </Button>
+            )}
           </Form>
         </Card.Body>
       </Card>

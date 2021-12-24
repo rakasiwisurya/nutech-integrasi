@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Col, Container, Image, Row, Table } from "react-bootstrap";
 import { API } from "../../config/api";
 import ModalAddProduct from "../atoms/ModalAddProduct";
 
 export default function AdminHome() {
+  const history = useHistory();
+
   const [products, setProducts] = useState([]);
   const [isShow, setIsShow] = useState({
     add: false,
@@ -12,10 +15,6 @@ export default function AdminHome() {
 
   const handleShowAdd = () => {
     setIsShow((prevState) => ({ ...prevState, add: true }));
-  };
-
-  const handleShowEdit = () => {
-    setIsShow((prevState) => ({ ...prevState, edit: true }));
   };
 
   const handleClose = () => {
@@ -54,8 +53,8 @@ export default function AdminHome() {
             Add Product
           </Button>
 
-          <Table striped bordered hover responsive className="text-indigo">
-            <thead className="bg-indigo text-light">
+          <Table striped bordered hover responsive className="text-primary">
+            <thead className="bg-primary text-light">
               <tr>
                 <th className="text-center">No</th>
                 <th className="text-center">Images</th>
@@ -78,7 +77,7 @@ export default function AdminHome() {
                       alt={item?.image}
                       width={70}
                       height={70}
-                      className="cursor-pointer"
+                      className="cursor-pointer img-animate"
                       onClick={() => {
                         window.open(item?.image);
                       }}
@@ -95,7 +94,7 @@ export default function AdminHome() {
                         <Button
                           variant="warning"
                           className="btn-action text-white"
-                          onClick={handleShowEdit}
+                          onClick={() => history.push(`/product/${item.id}`)}
                         >
                           Edit
                         </Button>
