@@ -38,7 +38,7 @@ export default function ModalConfirm({ show, handleClose, getAllProduct, id }) {
         <div className="d-flex justify-content-end">
           {isLoading ? (
             <>
-              <Button variant="primary" className="btn-action" disabled>
+              <Button variant="primary" className="btn-action me-2" disabled>
                 <img src={LoadingWhite} alt={LoadingWhite} height={20} />
               </Button>
               <Button
