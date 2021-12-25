@@ -1,7 +1,19 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Col, Container, Image, Row, Table } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  FormControl,
+  Image,
+  Row,
+  Table,
+} from "react-bootstrap";
+
 import { API } from "../../config/api";
+import formatNumber from "../../utils/formatNumber";
+
 import ModalAddProduct from "../atoms/ModalAddProduct";
 import Pagination from "../atoms/Pagination";
 import ModalConfirm from "../atoms/ModalConfirm";
@@ -12,6 +24,7 @@ export default function AdminHome() {
 
   let productPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const [productId, setProductId] = useState(null);
   const [isShow, setIsShow] = useState({
@@ -44,6 +57,21 @@ export default function AdminHome() {
     });
   };
 
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await API.get(`/products/search?name=${search}`);
+      setProducts(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getAllProduct = async () => {
     try {
       const response = await API.get("/products");
@@ -61,9 +89,25 @@ export default function AdminHome() {
     <div className="admin-home">
       <main>
         <Container>
-          <Button variant="primary" className="mb-4" onClick={handleShowAdd}>
-            Add Product
-          </Button>
+          <div className="d-flex justify-content-between">
+            <Button variant="primary" className="mb-4" onClick={handleShowAdd}>
+              Add Product
+            </Button>
+
+            <Form className="mb-4 d-flex" onSubmit={handleSearch}>
+              <FormControl
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+                onChange={handleChange}
+                value={search}
+              />
+              <Button variant="outline-primary" type="submit">
+                Search
+              </Button>
+            </Form>
+          </div>
 
           {products.length ? (
             <>
@@ -112,10 +156,10 @@ export default function AdminHome() {
                           </td>
                           <td className="text-center py-4">{item?.name}</td>
                           <td className="text-center py-4">
-                            {item?.buy_price}
+                            Rp. {formatNumber(item?.buy_price)}
                           </td>
                           <td className="text-center py-4">
-                            {item?.sell_price}
+                            Rp. {formatNumber(item?.sell_price)}
                           </td>
                           <td className="text-center py-4">{item?.stock}</td>
                           <td

@@ -105,7 +105,7 @@ export default function ModalAddProduct({ show, handleClose, getAllProduct }) {
           <FloatingLabel
             className="mb-4 text-primary"
             controlId="buy_price"
-            label="Buy Price"
+            label="Buy Price (Rupiah)"
           >
             <Form.Control
               type="number"
@@ -119,7 +119,7 @@ export default function ModalAddProduct({ show, handleClose, getAllProduct }) {
           <FloatingLabel
             className="mb-4 text-primary"
             controlId="sell_price"
-            label="Sell Price"
+            label="Sell Price (Rupiah)"
           >
             <Form.Control
               type="number"
