@@ -37,9 +37,19 @@ export default function ModalConfirm({ show, handleClose, getAllProduct, id }) {
         <div className="mb-3">Are you sure want to delete this?</div>
         <div className="d-flex justify-content-end">
           {isLoading ? (
-            <Button variant="primary" disabled>
-              <img src={LoadingWhite} alt={LoadingWhite} height={20} />
-            </Button>
+            <>
+              <Button variant="primary" className="btn-action" disabled>
+                <img src={LoadingWhite} alt={LoadingWhite} height={20} />
+              </Button>
+              <Button
+                variant="secondary"
+                className="btn-action"
+                onClick={handleClose}
+                disabled
+              >
+                Cancel
+              </Button>
+            </>
           ) : (
             <>
               <Button

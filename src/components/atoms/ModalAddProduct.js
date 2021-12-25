@@ -161,30 +161,42 @@ export default function ModalAddProduct({ show, handleClose, getAllProduct }) {
 
           <div className="mb-2 d-flex justify-content-end">
             {isLoading ? (
-              <Button
-                variant="primary"
-                type="submit"
-                className="btn-action me-2"
-                disabled
-              >
-                <Image src={LoadingWhite} alt={LoadingWhite} height={20} />
-              </Button>
+              <>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="btn-action me-2"
+                  disabled
+                >
+                  <Image src={LoadingWhite} alt={LoadingWhite} height={20} />
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={handleClose}
+                  className="btn-action"
+                  disabled
+                >
+                  Cancel
+                </Button>
+              </>
             ) : (
-              <Button
-                variant="primary"
-                type="submit"
-                className="btn-action me-2"
-              >
-                Add
-              </Button>
+              <>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="btn-action me-2"
+                >
+                  Add
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={handleClose}
+                  className="btn-action"
+                >
+                  Cancel
+                </Button>
+              </>
             )}
-            <Button
-              variant="secondary"
-              onClick={handleClose}
-              className="btn-action"
-            >
-              Cancel
-            </Button>
           </div>
         </Form>
       </Modal.Body>
