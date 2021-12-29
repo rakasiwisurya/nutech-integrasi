@@ -106,3 +106,17 @@ main {
     color: $primary;
   }
 }
+
+@media (max-width: 426px) {
+  .add-and-search {
+    display: block !important;
+
+    .btn-add {
+      width: 100%;
+    }
+
+    .form-search {
+      width: 100%;
+    }
+  }
+}

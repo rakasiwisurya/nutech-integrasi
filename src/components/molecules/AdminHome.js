@@ -95,12 +95,16 @@ export default function AdminHome() {
     <div className="admin-home">
       <main>
         <Container>
-          <div className="d-flex justify-content-between">
-            <Button variant="primary" className="mb-4" onClick={handleShowAdd}>
+          <div className="add-and-search flex justify-content-between">
+            <Button
+              variant="primary"
+              className="btn-add mb-4"
+              onClick={handleShowAdd}
+            >
               Add Product
             </Button>
 
-            <Form className="mb-4 d-flex" onSubmit={handleSearch}>
+            <Form className="search mb-4 d-flex" onSubmit={handleSearch}>
               <FormControl
                 type="search"
                 placeholder="Search"
