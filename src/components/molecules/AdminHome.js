@@ -95,7 +95,7 @@ export default function AdminHome() {
     <div className="admin-home">
       <main>
         <Container>
-          <div className="add-and-search flex justify-content-between">
+          <div className="add-and-search d-flex justify-content-between">
             <Button
               variant="primary"
               className="btn-add mb-4"
